@@ -12,7 +12,7 @@ describe('FeedSub', () => {
       expect(feed.options.interval).toEqual(60);
       expect(feed.options.Promise).toEqual(Promise);
       expect(feed.Promise).toEqual(Promise);
-      expect(feed.cache).toEqual([]);
+      expect(feed.cache).toEqual({});
     });
 
     it('should overwrite default options', () => {
