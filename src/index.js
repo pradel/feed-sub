@@ -33,11 +33,28 @@ class FeedSub extends EventEmitter {
   }
 
   /**
+   * @description Stop the stream
+   * @param {function} func Function called before sending the requests
+   */
+  getUrls(func) {
+    this.getUrlsFunc = func;
+  }
+
+  /**
    * @description Start the requests
    */
   makeRequests() {
-    const promises = this.urls.map(this.checkUpdate.bind(this));
-    this.Promise.all(promises).catch(this.error.bind(this));
+    this.Promise.resolve().then(() => {
+      if (this.getUrlsFunc) {
+        return this.getUrlsFunc();
+      }
+      return this.urls;
+    }).then((urls) => {
+      this.urls = urls;
+      const promises = this.urls.map(this.checkUpdate.bind(this));
+      return this.Promise.all(promises);
+    })
+    .catch(this.error.bind(this));
   }
 
   /**
