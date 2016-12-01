@@ -1,6 +1,6 @@
 # feed-sub
 
-Tracks rss/atom feeds and get notified when they are updated
+Tracks rss/atom feeds and get notified when they are updated.
 
 [![Build Status](https://travis-ci.org/pradel/feed-sub.svg?branch=master)](https://travis-ci.org/pradel/feed-sub)
 
@@ -31,4 +31,18 @@ feed.on('error', (err) => {
   console.log(err);
 });
 
+feed.start();
 ```
+
+## Api
+
+###`const feed = new FeedSub(urls, [options])`
+Create a new `FeedSub` instance.
+* `urls` - array  - Array of urls.
+* `options.interval` - number - Number of seconds between two checks.
+
+###`feed.start()`
+Start to stream.
+
+###`feed.stop()`
+Stop the stream.
