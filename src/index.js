@@ -7,7 +7,7 @@ class FeedSub extends EventEmitter {
     super();
     this.urls = urls;
     this.options = Object.assign({
-      interval: 10,
+      interval: 60,
       Promise,
     }, options);
     this.Promise = this.options.Promise;
