@@ -59,6 +59,7 @@ class FeedSub extends EventEmitter {
 
   /**
    * @description Check if there is an update on the feed
+   * @param {string} url Url to check
    */
   checkUpdate(url) {
     return this.request(url).then((res) => {
@@ -86,6 +87,11 @@ class FeedSub extends EventEmitter {
     }).catch(this.error.bind(this));
   }
 
+  /**
+   * @private
+   * @description Make a promisified request
+   * @param {string} url
+   */
   request(url) {
     return new this.Promise((resolve, reject) => {
       request(url, (err, res, body) => {
