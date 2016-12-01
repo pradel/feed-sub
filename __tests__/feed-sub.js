@@ -9,7 +9,7 @@ describe('FeedSub', () => {
     it('should have default options', () => {
       const feed = new FeedSub();
       expect(feed.options).toBeTruthy();
-      expect(feed.options.interval).toEqual(10);
+      expect(feed.options.interval).toEqual(60);
       expect(feed.options.Promise).toEqual(Promise);
       expect(feed.Promise).toEqual(Promise);
       expect(feed.cache).toEqual([]);
