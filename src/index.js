@@ -11,7 +11,7 @@ class FeedSub extends EventEmitter {
       Promise,
     }, options);
     this.Promise = this.options.Promise;
-    this.cache = [];
+    this.cache = {};
   }
 
   /**
@@ -43,7 +43,7 @@ class FeedSub extends EventEmitter {
   /**
    * @description Check if there is an update on the feed
    */
-  checkUpdate(url, index) {
+  checkUpdate(url) {
     return this.request(url).then((res) => {
       let feed;
       try {
@@ -57,14 +57,14 @@ class FeedSub extends EventEmitter {
       }
       feed.updated = new Date(feed.updated).getTime();
       // If date is in cache
-      if (this.cache[this.urls[index]]) {
+      if (this.cache[url]) {
         // If feed is more recent
-        if (feed.updated > this.cache[this.urls[index]].updated) {
-          this.cache[this.urls[index]] = { updated: feed.updated };
+        if (feed.updated > this.cache[url].updated) {
+          this.cache[url] = { updated: feed.updated };
           this.emit('update', feed);
         }
       } else {
-        this.cache[this.urls[index]] = { updated: feed.updated };
+        this.cache[url] = { updated: feed.updated };
       }
     }).catch(this.error.bind(this));
   }
