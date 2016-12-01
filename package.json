@@ -1,6 +1,6 @@
 {
   "name": "feed-sub",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Tracks rss/atom feeds and get notified when they are updated",
   "main": "lib/index.js",
   "scripts": {
